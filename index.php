@@ -5,7 +5,7 @@
                 $uri = 'http://';
         }
         $uri .= "kanggara.net";
-        header('Location: '.$uri.'/blog');
+        header('Location: '.$uri.'/wp');
         exit;
 ?>
 Something is wrong with the XAMPP installation :-(
