@@ -12,8 +12,10 @@
               <div class="col-lg">
                 <div class="p-5">
                   <div class="text-center">
+                  <img width="80px" src="<?= base_url('assets/') ?>img/icon.png" style="margin: 0 auto;vertical-align:middle;">
                     <h1 class="h4 text-gray-900 mb-4">TheSiS Login Page</h1>
                   </div>
+                  <?= $this->session->flashdata('messege');?>
                   <form class="user">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="email" placeholder="Enter Email Address..." name="email">
