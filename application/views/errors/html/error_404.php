@@ -13,6 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- font files -->
 	<link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 	<link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" />
+	<!-- Google Adsense -->
+	<script data-ad-client="ca-pub-7125226131467905" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 	<!-- css files -->
 	<link href="../assets/css/404style.css" rel="stylesheet" type="text/css" media="all" />

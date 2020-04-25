@@ -13,6 +13,9 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>css/style.css"/>
 
+  <!-- Google Adsense -->
+	<script data-ad-client="ca-pub-7125226131467905" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <!-- My Icon -->
   <link rel="icon" href="<?= base_url('assets/') ?>img/icon.png"/>
 
