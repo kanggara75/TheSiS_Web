@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<p class="copyright">&copy; <script type="text/javascript">
 						document.write(new Date().getFullYear());
 
-					</script> Flashy Error Page. All Rights Reserved | Design by <a href="https://kanggara.net/"
+					</script> Flashy Error Page. All Rights Reserved | ReDesign by <a href="https://kanggara.net/"
 						target="_blank">KAnggara75 </a></p>
 			</div>
 		</div>
