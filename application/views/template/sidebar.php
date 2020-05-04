@@ -1,18 +1,18 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-  <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user/'); ?>">
-    <div class="sidebar-brand-icon">
-      <i class="fas fa-motorcycle"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">TheSiS</div>
-  </a>
-  
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+	<!-- Sidebar - Brand -->
+	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user/'); ?>">
+		<div class="sidebar-brand-icon rotate-n-15">
+			<i class="fas fa-motorcycle"></i>
+		</div>
+		<div class="sidebar-brand-text mx-3">TheSiS</div>
+	</a>
 
-  <!-- Query Menu -->
-  <?php
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+	<!-- Query Menu -->
+	<?php
   $role_id = $this->session->userdata('role_id');
 
   $queryMenu =  "SELECT `user_menu`.`id`, `menu` 
