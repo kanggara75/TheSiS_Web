@@ -14,7 +14,7 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 		if($this->form_validation->run() == false){
-		$data['title']='TheSiS | Login';
+		$data['title']='Login';
 		$this->load->view('template/auth_header', $data);
 		$this->load->view('auth/login');
 		$this->load->view('template/auth_footer');
@@ -71,8 +71,6 @@ class Auth extends CI_Controller
 			'min_length' => 'Password too short'
 		]);
 		$this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-
-
 		if($this->form_validation->run() == false){
 			$data['title']='TheSiS | Registration';
 			$this->load->view('template/auth_header', $data);
@@ -89,7 +87,6 @@ class Auth extends CI_Controller
 				'is_active' => 1,
 				'date_created' => time()
 			];
-
 			$this->db->insert('user', $data);
 			$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Account Successfully Registered! </div>');
 			redirect('auth');
@@ -101,7 +98,6 @@ class Auth extends CI_Controller
 	{
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
-
 		$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">You Have Been Logged Out! </div>');
 		redirect('auth');
 	}
