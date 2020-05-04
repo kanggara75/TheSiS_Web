@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'root', //'username' => 'Lolipop',
+	'password' => '',	//'password' => 'AKU.KELVINa1151',
 	'database' => 'thesis_app',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
