@@ -5,7 +5,7 @@ class Admin extends CI_Controller
 {
     public function index()
 	{
-        $data['title'] = 'TheSiS | Admin';
+        $data['title'] = 'Admin Page';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
