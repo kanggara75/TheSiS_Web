@@ -60,5 +60,10 @@ class Menu extends CI_Controller
     }
     
   }
-}
 
+  public function delete()
+	{
+    $this->db->insert('user_menu', ['menu' => $this->input->post('menu')]);
+		redirect('menu');
+	}
+}
