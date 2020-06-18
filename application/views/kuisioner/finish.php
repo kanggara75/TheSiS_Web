@@ -10,12 +10,9 @@
 					<div class="row">
 						<div class="col-lg">
 							<div class="text-center">
-								<h1 class="card-title font-weight-bold">Kuisioner Penelitian</h1>
-                <h1 class="h3 text-gray-900">SMART EARLY WARNING SYSTEM UNTUK KEAMANAN</h1>
-								<h1 class="h3 text-gray-900">SEPEDA MOTOR BERBASIS PROSESOR XTENSA LX6</h1>
-                <hr>
+								<h1 class="card-title font-weight-bold">Thank You</h1>
 								<p class="card-text">Terimah kasih telah meluangkan waktu anda untuk mengisi kuisioner</p>
-								<a href="<?= base_url('kuisioner/mulai') ?>" class="btn btn-success mb-2">Mulai</a>
+								<a href="<?= base_url('') ?>" class="btn btn-primary mb-2">Back</a>
 							</div>
 							<div class="card-footer ">
 								<span class=”copy-left”>KAnggara75 @ <?= date('F Y')?></span>
