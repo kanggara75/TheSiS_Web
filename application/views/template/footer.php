@@ -44,13 +44,43 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
+<!-- Memanggil Script hanya pada Admin Page dan User Page -->
+<?php if($title == "Admin Page"): ?>
 <!-- Page level plugins -->
 <script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
-
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
-<script src="<?= base_url('assets/') ?>js/demo/chart-pie-demo.js"></script>
-<script src="<?= base_url('assets/') ?>js/demo/chart-bar-demo.js"></script>
+
+<script>
+	function updateOutput(element) {
+		var xhr = new XMLHttpRequest();
+		if (element.checked) {
+      xhr.open("GET", "updateKontrol?id=" + element.id + "&state=1", true);
+		} else {
+			xhr.open("GET", "updateKontrol?id=" + element.id + "&state=0", true);
+		}
+		xhr.send();
+		
+	}
+</script>
+<?php elseif($title == "My Profile"): ?> 
+<!-- Page level plugins -->
+<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
+<!-- Page level custom scripts -->
+<script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
+<script>
+	function updateOutput(element) {
+		var xhr = new XMLHttpRequest();
+		if (element.checked) {
+      xhr.open("GET", "updateKontrol?id=" + element.id + "&state=1", true);
+		} else {
+			xhr.open("GET", "updateKontrol?id=" + element.id + "&state=0", true);
+		}
+		xhr.send();
+	}
+</script>
+<?php else: ?>
+<?php endif; ?>
 </body>
 
 </html>
