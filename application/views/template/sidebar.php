@@ -1,7 +1,11 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 	<!-- Sidebar - Brand -->
+		<?php if($user['role_id'] == "1"): ?>
+	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin/'); ?>">
+	<?php else :?>
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user/'); ?>">
+	<?php endif; ?>
 		<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-motorcycle"></i>
 		</div>
