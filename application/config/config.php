@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | $config['base_url'] = 'https://thesis.kanggara.net/';
 */
 // $config['base_url'] = 'https://localhost/TheSiS_Web/';
-$config['base_url'] = 'https://192.168.43.15/TheSiS_Web/';
+$config['base_url'] = 'https://192.168.43.50/TheSiS_Web/';
 
 /*
 |--------------------------------------------------------------------------
