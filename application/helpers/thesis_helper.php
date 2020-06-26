@@ -25,3 +25,13 @@ function login_check()
       }
   }
 }
+
+function check_access($role_id, $menu_id)
+{
+  $thesis = get_instance();
+  $result = $thesis->db->get_where('user_access_menu', ['role_id' => $role_id, 'menu_id' => $menu_id]);
+  if($result->num_rows() > 0 )
+  {
+    return "checked='checked'";
+  }
+}
