@@ -84,21 +84,93 @@ class Auth extends CI_Controller
 			$this->load->view('template/auth_footer');
 		}
 		else {
+			$email = $this->input->post('email', true);
 			$data = [
 				'name' => htmlspecialchars($this->input->post('name', true)),
-				'email' => htmlspecialchars($this->input->post('email')),
+				'email' => htmlspecialchars($email),
 				'image' => 'default.jpg',
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'role_id' => 2,
-				'is_active' => 1,
+				'is_active' => 0,
 				'date_created' => time()
 			];
+			$token = base64_encode(random_bytes(32));
+			$user_token = [
+				'email' => $email,
+				'token' => $token,
+				'date' => time()
+			];
+
 			$this->db->insert('user', $data);
+			$this->db->insert('user_token', $user_token); 
+			$this->_sendEmail($token, 'verify');
 			$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Account Successfully Registered! </div>');
 			redirect('auth');
 		}
 	}
 
+	private function _sendEmail($token, $type)
+	{
+		$config = [
+			'protocol' 	=> 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_user' => 'kanggara115@gmail.com',
+			'smtp_pass' => 'AKU.KELVINa11512229141234',
+			'smtp_port' => 465,
+			'mailtype' 	=> 'html',
+			'charset' 	=> 'utf-8',
+			'newline' 	=> "\r\n"
+		];
+		$this->load->library('email', $config);
+		$this->email->initialize($config);
+
+		$this->email->from('kanggara75@gmail.com', 'Admin TheSiS');
+		$this->email->to($this->input->post('email'));
+
+		if($type == 'verify'){
+			$this->email->subject('Account Activation');
+			$this->email->message('Click this link to activate your TheSiS Account: <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Here</a>');
+		} 
+		if($this->email->send()){
+			return true;
+		} else {
+			echo $this->email->print_debugger();
+			die;
+		}
+	}
+
+	public function verify()
+	{
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+		$user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+		if($user){
+			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+			if($user_token){
+				if(time() - $user_token['date'] < (60*60*24)){
+					$this->db->set('is_active', 1);
+					$this->db->where('email', $email);
+					$this->db->update('user');
+					$this->db->delete('user_token', ['email' => $email]);
+					$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">' . $email . ' Activated!</div>');
+					redirect('auth');
+				} else {
+					$this->db->delete('user', ['email' => $email]);
+					$this->db->delete('user_token', ['email' => $email]);
+					$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Token Expiert!</div>');
+					redirect('auth');
+				}
+			} else {
+				$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Token Invalid!</div>');
+				redirect('auth');
+			}
+		} else {
+			$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email Not Found!</div>');
+			redirect('auth');
+		}
+
+	}
 
 	public function logout()
 	{
