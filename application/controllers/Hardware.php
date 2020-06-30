@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class kontrol extends CI_Controller
+class Hardware extends CI_Controller
 {
-  public function index()
+  public function update()
   {
     $this->load->model('Kontrol_Model', 'kontrol');
     $action = $id = $name = $gpio = $state = "";
