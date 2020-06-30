@@ -15,21 +15,21 @@ class Kontrol_model extends CI_Model
     return $this->db->query($query)->result_array();
   }
 
-  function getAllBoards() 
+  function getAllboards() 
   {
-    $query = "SELECT board, last_request FROM Boards ORDER BY board";
+    $query = "SELECT board, last_request FROM boards ORDER BY board";
     return $this->db->query($query)->result_array();
   }
 
   function updateLastBoardTime($board) 
   {
-    $query = "UPDATE Boards SET last_request=now() WHERE board='". $board .  "'";
+    $query = "UPDATE boards SET last_request=now() WHERE board='". $board .  "'";
     return $this->db->query($query);
   }
 
   function getBoard($board)
   {
-    $query = "SELECT board, last_request FROM Boards WHERE board='" . $board . "'";
+    $query = "SELECT board, last_request FROM boards WHERE board='" . $board . "'";
     return $this->db->query($query)->result_array();
   }
 
