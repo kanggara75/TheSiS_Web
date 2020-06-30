@@ -172,7 +172,6 @@ class Auth extends CI_Controller
 			$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email Not Found!</div>');
 			redirect('auth');
 		}
-
 	}
 
 	public function logout()

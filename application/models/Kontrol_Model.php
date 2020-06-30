@@ -2,19 +2,45 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Kontrol_model extends CI_Model
-{
-  private $table = 'kontrol';
-    
+{    
   public function getAllKontrol()
   {
-    $query = "SELECT * FROM  . $this->table";
+    $query = "SELECT * FROM  `kontrol`";
     return $this->db->query($query)->result_array();
   }
 
-  function update_data($where,$data,$table){
-    $this->db->bind('id', $data['id']);
-    $this->db->bind('state', $data['state']);
-		$this->db->where($where);
-		$this->db->update($table,$data);
-  }	
+  function getAllOutputStates($board) 
+  {
+    $query = "SELECT gpio, state FROM kontrol WHERE board='" . $board . "'";
+    return $this->db->query($query)->result_array();
+  }
+
+  function getAllBoards() 
+  {
+    $query = "SELECT board, last_request FROM Boards ORDER BY board";
+    return $this->db->query($query)->result_array();
+  }
+
+  function updateLastBoardTime($board) 
+  {
+    $query = "UPDATE Boards SET last_request=now() WHERE board='". $board .  "'";
+    return $this->db->query($query);
+  }
+
+  function getBoard($board)
+  {
+    $query = "SELECT board, last_request FROM Boards WHERE board='" . $board . "'";
+    return $this->db->query($query)->result_array();
+  }
+
+  function updateOutput($id, $state) {
+    $query = "UPDATE Kontrol SET state='" . $state . "' WHERE id='". $id .  "'";
+    return $this->db->query($query);
+  }
+
+  function getOutputBoardById($id) 
+  {
+    $sql = "SELECT board FROM Outputs WHERE id='" . $id . "'";
+    return $this->db->query($sql)->result_array();
+  }
 }
