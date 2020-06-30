@@ -83,6 +83,7 @@
 </script>
 <?php else: ?>
 <?php endif; ?>
+<?php if($title == "Role Access Page"): ?>
 <!-- AJAX change Access -->
 <script>
 	$('.custom-file-input').on('change', function () {
@@ -107,6 +108,7 @@
 	});
 
 </script>
+<?php endif; ?>
 </body>
 
 </html>
