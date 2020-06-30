@@ -56,9 +56,9 @@
 	function updateOutput(element) {
 		var xhr = new XMLHttpRequest();
 		if (element.checked) {
-			xhr.open("GET", "/TheSiS_Web/admin/updateKontrol?id=" + element.id + "&state=1", true);
+			xhr.open("GET", "/admin/updateKontrol?id=" + element.id + "&state=1", true);
 		} else {
-			xhr.open("GET", "/TheSiS_Web/admin/updateKontrol?id=" + element.id + "&state=0", true);
+			xhr.open("GET", "/admin/updateKontrol?id=" + element.id + "&state=0", true);
 		}
 		xhr.send();
 	}
@@ -73,9 +73,9 @@
 	function updateOutput(element) {
 		var xhr = new XMLHttpRequest();
 		if (element.checked) {
-			xhr.open("GET", "/TheSiS_Web/user/updateKontrol?id=" + element.id + "&state=1", true);
+			xhr.open("GET", "/user/updateKontrol?id=" + element.id + "&state=1", true);
 		} else {
-			xhr.open("GET", "/TheSiS_Web/user/updateKontrol?id=" + element.id + "&state=0", true);
+			xhr.open("GET", "/user/updateKontrol?id=" + element.id + "&state=0", true);
 		}
 		xhr.send();
 	}
