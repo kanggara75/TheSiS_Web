@@ -13,7 +13,7 @@ class Admin extends CI_Controller
 	{
     $data['title'] = 'Admin Page';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    $this->load->model('Kontrol_Model', 'kontrol');    
+    $this->load->model('Kontrol_Model', 'kontrol');
     $data['kontrol'] = $this->kontrol->getAllKontrol();
     $this->load->view('template/header', $data);
     $this->load->view('template/sidebar', $data);
@@ -48,17 +48,6 @@ class Admin extends CI_Controller
     $this->load->view('template/footer', $data);
   }
 
-  public function updateKontrol()
-  {
-    $id = $this->input->get('id');
-    $data = [
-      'state' => $this->input->get('state'),
-    ];
-    $this->db->where('id', $id);
-    $this->db->update('kontrol', $data);
-    redirect('admin');
-  }
-
   public function changeaccess()
   {
     $menu_id = $this->input->post('menuId');
@@ -78,5 +67,14 @@ class Admin extends CI_Controller
     }
 
     $this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Access Changed! </div>');
+  }
+
+  public function updateKontrol()
+  {
+    $this->load->model('Kontrol_Model', 'kontrol');
+    $id = htmlspecialchars($this->input->get('id'));
+    $state = htmlspecialchars($this->input->get('state'));
+    $result = $this->kontrol->updateOutput($id, $state);
+    redirect('admin');
   }
 }
