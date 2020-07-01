@@ -5,7 +5,7 @@ class Hardware extends CI_Controller
 {
   public function update()
   {
-    $this->load->model('Kontrol_Model', 'kontrol');
+    $this->load->model('Kontrol_model', 'kontrol');
     $action = $id = $name = $gpio = $state = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") 
