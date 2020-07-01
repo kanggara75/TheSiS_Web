@@ -53,16 +53,21 @@
 <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
 
 <script>
-	function updateOutput(element) {
-		var xhr = new XMLHttpRequest();
-		if (element.checked) {
-			xhr.open("GET", "/admin/updateKontrol?id=" + element.id + "&state=1", true);
-		} else {
-			xhr.open("GET", "/admin/updateKontrol?id=" + element.id + "&state=0", true);
-		}
-		xhr.send();
-	}
-
+	$('.switch-input').on('click', function () {
+		const id = $(this).data('id');
+		const state = $(this).data('state');
+		$.ajax({
+			url: "<?= base_url('admin/updateKontrol'); ?>",
+			type: 'post',
+			data: {
+				id: id,
+				state: state
+			},
+			success: function () {
+				document.location.href = "<?= base_url('admin'); ?>";
+			}
+		})
+	});
 </script>
 <?php elseif($title == "My Profile"): ?>
 <!-- Page level plugins -->
@@ -70,20 +75,25 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
 <script>
-	function updateOutput(element) {
-		var xhr = new XMLHttpRequest();
-		if (element.checked) {
-			xhr.open("GET", "/user/updateKontrol?id=" + element.id + "&state=1", true);
-		} else {
-			xhr.open("GET", "/user/updateKontrol?id=" + element.id + "&state=0", true);
-		}
-		xhr.send();
-	}
-
+$('.switch-input').on('click', function () {
+		const id = $(this).data('id');
+		const state = $(this).data('state');
+		$.ajax({
+			url: "<?= base_url('admin/updateKontrol'); ?>",
+			type: 'post',
+			data: {
+				id: id,
+				state: state
+			},
+			success: function () {
+				document.location.href = "<?= base_url('admin'); ?>";
+			}
+		})
+	});
 </script>
 <?php else: ?>
 <?php endif; ?>
-<?php if($title == "Role Access Page"): ?>
+<?php if($title == "Role Access Page" || "Edit Profile"): ?>
 <!-- AJAX change Access -->
 <script>
 	$('.custom-file-input').on('change', function () {
@@ -106,7 +116,6 @@
 			}
 		})
 	});
-
 </script>
 <?php endif; ?>
 </body>

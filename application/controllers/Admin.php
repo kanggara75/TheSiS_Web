@@ -20,6 +20,7 @@ class Admin extends CI_Controller
     $this->load->view('template/topbar', $data);
     $this->load->view('admin/index', $data);
     $this->load->view('template/footer', $data);
+    $this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Access Changed! </div>');
   }
 
   public function role()
@@ -71,10 +72,19 @@ class Admin extends CI_Controller
 
   public function updateKontrol()
   {
-    $this->load->model('Kontrol_Model', 'kontrol');
-    $id = htmlspecialchars($this->input->get('id'));
-    $state = htmlspecialchars($this->input->get('state'));
-    $result = $this->kontrol->updateOutput($id, $state);
-    redirect('admin');
+    $state = $this->input->post('state');
+    $id = $this->input->post('id');
+    if($state == 1)
+    {
+      $this->db->set('state', 0);
+      $this->db->where('id', $id);
+      $this->db->update('kontrol');
+    } else {
+      $this->db->set('state', 1);
+      $this->db->where('id', $id);
+      $this->db->update('kontrol');
+    }
+    
+    $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">Control Changed!</div>');
   }
 }

@@ -35,3 +35,13 @@ function check_access($role_id, $menu_id)
     return "checked='checked'";
   }
 }
+
+function check_switch($id, $state)
+{
+  $thesis = get_instance();
+  $result = $thesis->db->get_where('kontrol', ['id' => $id, 'state' => $state]);
+  if($state == 1)
+  {
+    return "checked='checked'";
+  }
+}
