@@ -47,9 +47,15 @@
 
 <?php if($title == "Admin Page"): ?>
 <!-- Memanggil Script hanya pada Admin Page dan User Page -->
-<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
-<script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
+<!-- <script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script> -->
+<!-- <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script> -->
 <script>
+	$(document).ready(function() {
+		setInterval(function () {
+			$("#switch").load("<?= base_url('admin/getAllKontrol'); ?>");
+		}, 10000);
+	});
+
 	$('.switch-input').on('click', function () {
 		const id = $(this).data('id');
 		const state = $(this).data('state');
@@ -63,10 +69,11 @@
 				state: state
 			},
 			success: function () {
-				document.location.href="<?= base_url('admin'); ?>";
+				document.location.href = "<?= base_url('admin'); ?>";
 			}
 		})
 	});
+
 </script>
 <?php elseif($title == "Edit Profile"): ?>
 <!-- AJAX Edit Profile  -->
@@ -75,6 +82,7 @@
 		let fileName = $(this).val().split('\\').pop();
 		$(this).next('.custom-file-label').addClass("selected").html(fileName);
 	});
+
 </script>
 <?php elseif($title == "Role Access Page"): ?>
 <!-- AJAX change Access -->
@@ -94,7 +102,9 @@
 			}
 		})
 	});
+
 </script>
 <?php endif; ?>
 </body>
+
 </html>

@@ -87,4 +87,28 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">' . $nama . ' Changed to <strong>On!</strong></div>');
     }
   }
+
+  public function getAllKontrol()
+  {
+    $data['title'] = 'Admin Page';
+    $query = "SELECT * FROM  `kontrol`";
+    $kontrol = $this->db->query($query);
+    $this->load->view('template/header', $data);
+    foreach($kontrol->result_array() as $cp){
+      echo "<div class='row'>";
+      echo "<div class='col-6 d-flex flex-row align-items-center justify-content-between'>";
+      echo "<h1 class='tlabel'>" . $cp['nama'] . "</h1>";
+      echo "</div>";
+      echo "<div class='col-5'>";
+      echo "<label class='switch'>";
+      echo "<input class='switch-input' type='checkbox' data-id='" . $cp['id'] . "' data-nama='" . $cp['nama']. "' data-state='"  . $cp['state'] . "'"; 
+      $cek = check_switch($cp['id'],$cp['state']);
+      echo $cek;
+      echo ">";
+      echo "<span class='slider'></span></label>";
+      echo "</div>";
+      echo "</div>";
+    }
+    $this->load->view('template/footer', $data);
+  }
 }
