@@ -20,7 +20,6 @@ class Admin extends CI_Controller
     $this->load->view('template/topbar', $data);
     $this->load->view('admin/index', $data);
     $this->load->view('template/footer', $data);
-    $this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Access Changed! </div>');
   }
 
   public function role()
@@ -74,17 +73,18 @@ class Admin extends CI_Controller
   {
     $state = $this->input->post('state');
     $id = $this->input->post('id');
+    $nama = $this->input->post('nama');
     if($state == 1)
     {
       $this->db->set('state', 0);
       $this->db->where('id', $id);
       $this->db->update('kontrol');
+      $this->session->set_flashdata('messege1', '<div class="alert alert-danger" role="alert">' . $nama . ' Changed to <strong>Off!</strong></div>');
     } else {
       $this->db->set('state', 1);
       $this->db->where('id', $id);
       $this->db->update('kontrol');
+      $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">' . $nama . ' Changed to <strong>On!</strong></div>');
     }
-    
-    $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">Control Changed!</div>');
   }
 }
