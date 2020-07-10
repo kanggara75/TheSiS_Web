@@ -53,7 +53,7 @@
 	$(document).ready(function() {
 		setInterval(function () {
 			$("#switch").load("<?= base_url('admin/getAllKontrol'); ?>");
-		}, 10000);
+		}, 20000);
 	});
 
 	$('.switch-input').on('click', function () {
