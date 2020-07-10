@@ -45,62 +45,40 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
-<!-- Memanggil Script hanya pada Admin Page dan User Page -->
 <?php if($title == "Admin Page"): ?>
-<!-- Page level plugins -->
+<!-- Memanggil Script hanya pada Admin Page dan User Page -->
 <script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
-<!-- Page level custom scripts -->
 <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
-
 <script>
 	$('.switch-input').on('click', function () {
 		const id = $(this).data('id');
 		const state = $(this).data('state');
+		const nama = $(this).data('nama');
 		$.ajax({
 			url: "<?= base_url('admin/updateKontrol'); ?>",
 			type: 'post',
 			data: {
 				id: id,
+				nama: nama,
 				state: state
 			},
 			success: function () {
-				document.location.href = "<?= base_url('admin'); ?>";
+				document.location.href="<?= base_url('admin'); ?>";
 			}
 		})
 	});
 </script>
-<?php elseif($title == "My Profile"): ?>
-<!-- Page level plugins -->
-<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
-<!-- Page level custom scripts -->
-<script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
-<script>
-$('.switch-input').on('click', function () {
-		const id = $(this).data('id');
-		const state = $(this).data('state');
-		$.ajax({
-			url: "<?= base_url('admin/updateKontrol'); ?>",
-			type: 'post',
-			data: {
-				id: id,
-				state: state
-			},
-			success: function () {
-				document.location.href = "<?= base_url('admin'); ?>";
-			}
-		})
-	});
-</script>
-<?php else: ?>
-<?php endif; ?>
-<?php if($title == "Role Access Page" || "Edit Profile"): ?>
-<!-- AJAX change Access -->
+<?php elseif($title == "Edit Profile"): ?>
+<!-- AJAX Edit Profile  -->
 <script>
 	$('.custom-file-input').on('change', function () {
 		let fileName = $(this).val().split('\\').pop();
 		$(this).next('.custom-file-label').addClass("selected").html(fileName);
 	});
-
+</script>
+<?php elseif($title == "Role Access Page"): ?>
+<!-- AJAX change Access -->
+<script>
 	$('.form-check-input').on('click', function () {
 		const menuId = $(this).data('menu');
 		const roleId = $(this).data('role');
@@ -119,5 +97,4 @@ $('.switch-input').on('click', function () {
 </script>
 <?php endif; ?>
 </body>
-
 </html>
