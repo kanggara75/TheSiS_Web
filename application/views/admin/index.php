@@ -83,7 +83,8 @@
 				</div>
 				<div class="card-body container-fluid">
 					<!-- Looping Control -->
-					<?= $this->session->flashdata('messege1'); ?>
+					<?= $this->session->flashdata('messege1');?>
+					<!-- <div id="messege1"></div> -->
 						<?php foreach ($kontrol as $cp) :?>
 						<div class="row">
 							<div class="col-6 d-flex flex-row align-items-center justify-content-between">
@@ -91,7 +92,7 @@
 							</div>
 							<div class="col-5">
 								<label class="switch">
-										<input class="switch-input" type="checkbox" data-id="<?= $cp['id']; ?>" data-state="<?= $cp['state']; ?>" <?= check_switch($cp['id'],$cp['state']); ?>>
+										<input class="switch-input" type="checkbox" data-id="<?= $cp['id']; ?>" data-nama="<?= $cp['nama']; ?>" data-state="<?= $cp['state']; ?>" <?= check_switch($cp['id'],$cp['state']); ?>>
 									<span class="slider"></span></label>
 							</div>
 						</div>
