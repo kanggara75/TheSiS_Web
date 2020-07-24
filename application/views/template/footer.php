@@ -39,7 +39,8 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url('assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
@@ -47,8 +48,8 @@
 
 <?php if($title == "Admin Page"): ?>
 <!-- Memanggil Script hanya pada Admin Page dan User Page -->
-<!-- <script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script> -->
-<!-- <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script> -->
+<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
+<script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
 <script>
 	$(document).ready(function() {
 		setInterval(function () {
