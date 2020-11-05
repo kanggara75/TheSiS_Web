@@ -5,6 +5,7 @@ class Landing extends CI_Controller
 {
 	public function index()
 	{
-		$this->load->view('landing/index');
+		$data['title'] = 'Tracking Secure System';
+		$this->load->view('landing/index2', $data);
 	}
 }

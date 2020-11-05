@@ -7,4 +7,9 @@ class Kontrol extends CI_Controller
   {
     $this->load->view('kontrol/acc');
   }
+
+  public function gps()
+  {
+    $this->load->view('kontrol/gps');
+  }
 }
