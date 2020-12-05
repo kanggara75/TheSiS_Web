@@ -10,9 +10,10 @@ class Admin extends CI_Controller
   }
 
   public function index()
-	{
+  {
     $data['title'] = 'Admin Page';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['chart'] = $this->db->order_by('id', 'DESC')->get('acc', 40)->result_array();
     $this->load->model('Kontrol_model', 'kontrol');
     $data['kontrol'] = $this->kontrol->getAllKontrol();
     $this->load->view('template/header', $data);
@@ -23,7 +24,7 @@ class Admin extends CI_Controller
   }
 
   public function role()
-	{
+  {
     $data['title'] = 'Role Page';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['role'] = $this->db->get('user_role')->result_array();
@@ -35,7 +36,7 @@ class Admin extends CI_Controller
   }
 
   public function roleAccess($role_id)
-	{
+  {
     $data['title'] = 'Role Access Page';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
@@ -54,13 +55,12 @@ class Admin extends CI_Controller
     $role_id = $this->input->post('roleId');
 
     $data = [
-              'role_id' => $role_id,
-              'menu_id' => $menu_id
+      'role_id' => $role_id,
+      'menu_id' => $menu_id
     ];
 
     $result = $this->db->get_where('user_access_menu', $data);
-    if($result->num_rows() < 1)
-    {
+    if ($result->num_rows() < 1) {
       $this->db->insert('user_access_menu', $data);
     } else {
       $this->db->delete('user_access_menu', $data);
@@ -74,8 +74,7 @@ class Admin extends CI_Controller
     $state = $this->input->post('state');
     $id = $this->input->post('id');
     $nama = $this->input->post('nama');
-    if($state == 1)
-    {
+    if ($state == 1) {
       $this->db->set('state', 0);
       $this->db->where('id', $id);
       $this->db->update('kontrol');
@@ -94,15 +93,15 @@ class Admin extends CI_Controller
     $query = "SELECT * FROM  `kontrol`";
     $kontrol = $this->db->query($query);
     $this->load->view('template/header', $data);
-    foreach($kontrol->result_array() as $cp){
+    foreach ($kontrol->result_array() as $cp) {
       echo "<div class='row'>";
       echo "<div class='col-6 d-flex flex-row align-items-center justify-content-between'>";
       echo "<h1 class='tlabel'>" . $cp['nama'] . "</h1>";
       echo "</div>";
       echo "<div class='col-5'>";
       echo "<label class='switch'>";
-      echo "<input class='switch-input' type='checkbox' data-id='" . $cp['id'] . "' data-nama='" . $cp['nama']. "' data-state='"  . $cp['state'] . "'"; 
-      $cek = check_switch($cp['id'],$cp['state']);
+      echo "<input class='switch-input' type='checkbox' data-id='" . $cp['id'] . "' data-nama='" . $cp['nama'] . "' data-state='"  . $cp['state'] . "'";
+      $cek = check_switch($cp['id'], $cp['state']);
       echo $cek;
       echo ">";
       echo "<span class='slider'></span></label>";
