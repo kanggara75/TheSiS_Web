@@ -26,47 +26,45 @@
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-					<div class="chart-area">
-						<div class="table-box">
-							<div class="table-row table-head">
+					<div class="table-box">
+						<div class="table-row table-head">
+							<div class="table-cell first-cell">
+								<p>No</p>
+							</div>
+							<div class="table-cell">
+								<p>Waktu & Tanggal</p>
+							</div>
+							<div class="table-cell">
+								<p>Longitude</p>
+							</div>
+							<div class="table-cell">
+								<p>Latitude</p>
+							</div>
+							<div class="table-cell last-cell">
+								<p>Detail</p>
+							</div>
+						</div>
+						<?php $i = 1; ?>
+						<?php foreach ($map as $m) : ?>
+							<div class="table-row">
 								<div class="table-cell first-cell">
-									<p>No</p>
+									<p><?= $i; ?></p>
 								</div>
 								<div class="table-cell">
-									<p>Waktu & Tanggal</p>
+									<p><?= date('H:i:s \W\I\B d/m/Y', $m['time']); ?></p>
 								</div>
 								<div class="table-cell">
-									<p>Longitude</p>
+									<p><?= number_format($m['lon'], 6); ?></p>
 								</div>
 								<div class="table-cell">
-									<p>Latitude</p>
+									<p><?= number_format($m['lat'], 6); ?></p>
 								</div>
-								<div class="table-cell last-cell">
-									<p>Detail</p>
+								<div class="table-cell">
+									<p><a href="http://maps.google.com/maps?z=17&t=k&q=loc:<?= number_format($m['lat'], 6); ?>,+<?= number_format($m['lon'], 6); ?>" target="_blank" class="badge badge-success">Lihat Lokasi</a></p>
 								</div>
 							</div>
-							<?php $i = 1; ?>
-							<?php foreach ($map as $m) : ?>
-								<div class="table-row">
-									<div class="table-cell first-cell">
-										<p><?= $i; ?></p>
-									</div>
-									<div class="table-cell">
-										<p><?= date('H:i:s \W\I\B d/m/Y', $m['time']); ?></p>
-									</div>
-									<div class="table-cell">
-										<p><?= $m['lon']; ?></p>
-									</div>
-									<div class="table-cell">
-										<p><?= $m['lat']; ?></p>
-									</div>
-									<div class="table-cell">
-										<p><a href="http://maps.google.com/maps?z=17&t=k&q=loc:<?= $m['lat']; ?>,+<?= $m['lon']; ?>" target="_blank" class="badge badge-success">Lihat Lokasi</a></p>
-									</div>
-								</div>
-								<?php $i++; ?>
-							<?php endforeach; ?>
-						</div>
+							<?php $i++; ?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
