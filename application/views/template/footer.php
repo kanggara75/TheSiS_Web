@@ -214,12 +214,6 @@
 		});
 	</script>
 	<script>
-		$(document).ready(function() {
-			setInterval(function() {
-				$("#switch").load("<?= base_url('admin/getAllKontrol'); ?>");
-			}, 20000);
-		});
-
 		$('.switch-input').on('click', function() {
 			const id = $(this).data('id');
 			const state = $(this).data('state');
