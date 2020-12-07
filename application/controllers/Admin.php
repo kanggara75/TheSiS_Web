@@ -14,6 +14,7 @@ class Admin extends CI_Controller
     $data['title'] = 'Admin Page';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['chart'] = $this->db->order_by('id', 'DESC')->get('acc', 40)->result_array();
+    $data['map'] = $this->db->order_by('id', 'DESC')->get('map', 5)->result_array();
     $this->load->model('Kontrol_model', 'kontrol');
     $data['kontrol'] = $this->kontrol->getAllKontrol();
     $this->load->view('template/header', $data);
