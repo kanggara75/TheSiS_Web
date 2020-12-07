@@ -37,10 +37,10 @@
       <p>TheSiS merupakan sebuah sistem keamanan pada kendaraan berbasis Internet of Think.</p>
       <p>Sistem ini menawarkan keamanan dan pemantauan tambahan pada kendaraan anda, juga dapat dijadikan saklar untuk mematikan kendaraan dari jarak jauh.</p>
       <div class="btn-wrapper">
-        <a href="#" class="btn signup">Simulasikan</a>
+        <a href="<?= base_url('simulation') ?>" class="btn signup">Simulasikan</a>
         <p>atau</p>
-        <a href="#" class="btn facebook">Daftar</a>
-        <a href="#" class="btn twitter">Masuk</a>
+        <a href="<?= base_url('auth/registration') ?>" class="btn facebook">Daftar</a>
+        <a href="<?= base_url('auth') ?>" class="btn twitter">Masuk</a>
       </div>
     </div>
   </div>
