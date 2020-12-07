@@ -1,14 +1,21 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<title>404 | Page Not Found</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script type="application/x-javascript"> addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/x-javascript">
+		addEventListener("load", function() {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
 	</script>
 	<!-- font files -->
 	<link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
@@ -34,9 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<p class="w3-agileits2">We can't seem to find the page you're looking for.</p>
 				<p class="copyright">&copy; <script type="text/javascript">
 						document.write(new Date().getFullYear());
-
-					</script> Flashy Error Page. All Rights Reserved | ReDesign by <a href="https://kanggara.net/"
-						target="_blank">KAnggara75 </a></p>
+					</script> Flashy Error Page. All Rights Reserved | ReDesign by <a href="https://kanggara.net/" target="_blank">KAnggara75 </a></p>
 			</div>
 		</div>
 	</div>
@@ -45,4 +50,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="../assets/js/demo-2.js"></script>
 	<!-- /js files -->
 </body>
+
 </html>
