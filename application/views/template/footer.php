@@ -48,6 +48,8 @@
 <?php if ($title == "Admin Page") : ?>
 	<!-- Memanggil Script hanya pada Admin Page dan User Page -->
 	<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
+	<!-- My Css For Map Table-->
+	<link href="<?= base_url('assets/') ?>css/logMap.css" rel="stylesheet">
 	<!-- Chart Script -->
 	<script>
 		function number_format(number, decimals, dec_point, thousands_sep) {

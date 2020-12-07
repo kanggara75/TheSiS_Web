@@ -49,7 +49,7 @@ input:checked+.slider:before {
 }
 
 /* DESKTOP Versions */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
 
 	.switch {
 		position: relative;
