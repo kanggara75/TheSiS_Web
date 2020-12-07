@@ -1,0 +1,4 @@
+http://maps.google.com/maps?z=17&t=h&q=0.471331,+101.363874
+https://www.google.com/maps/search/?api=1&query=0.471331,101.363874&basemap=satellite
+https://www.google.com/maps/@?api=1&map_action=map&center=0.471331,101.363874&zoom=17&basemap=satellite
+https://www.google.com/maps/search/?api=1&query=0.471331,101.363874
