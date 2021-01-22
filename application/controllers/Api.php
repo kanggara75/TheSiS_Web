@@ -15,10 +15,9 @@ class Api extends CI_Controller
         'name' => $user['name'],
         'email' => $user['email'],
         'image' => $user['image'],
+        'value' => (int)$user['role_id'],
         'password' => $user['password'],
-        'value' => $user['role_id'],
-        'is_active' => $user['is_active'],
-        'date_created' => $user['date_created'],
+        'date_created' => (int)$user['date_created'],
       ];
 
       if ($user) {
@@ -32,19 +31,19 @@ class Api extends CI_Controller
               echo json_encode($response);
             }
           } else {
-            $response['value'] = 0;
-            $response['messege'] = "Username or Password is Wrong!";
-            echo json_encode($response);
+            $data['value'] = 0;
+            $data['messege'] = "Username or Password is Wrong!";
+            echo json_encode($data);
           }
         } else {
-          $response['value'] = 3;
-          $response['messege'] = "Email not activated yet";
-          echo json_encode($response);
+          $data['value'] = 3;
+          $data['messege'] = "Email not activated yet";
+          echo json_encode($data);
         }
       } else {
-        $response['value'] = 4;
-        $response['messege'] = "Email not found";
-        echo json_encode($response);
+        $data['value'] = 4;
+        $data['messege'] = "Email not found";
+        echo json_encode($data);
       }
     }
   }
