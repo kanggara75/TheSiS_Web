@@ -17,7 +17,7 @@ class Api extends CI_Controller
         'image' => $user['image'],
         'value' => (int)$user['role_id'],
         'password' => $user['password'],
-        'date_created' => (int)$user['date_created'],
+        'date_created' => date('d F Y', $user['date_created']),
       ];
 
       if ($user) {
