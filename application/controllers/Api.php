@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Api extends CI_Controller
 {
+  function __construct(){
+		parent::__construct();		
+		$this->load->model('Kontrol_model', 'kontrol');
+  }
+  
   public function login()
   {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
