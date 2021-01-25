@@ -34,7 +34,7 @@ class Kontrol_model extends CI_Model
   }
 
   function updateOutput($id, $state) {
-    $query = "UPDATE Kontrol SET state='" . $state . "' WHERE id='". $id .  "'";
+    $query = "UPDATE kontrol SET state='" . $state . "' WHERE id='". $id .  "'";
     return $this->db->query($query);
   }
 
