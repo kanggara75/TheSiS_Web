@@ -3,11 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Api extends CI_Controller
 {
-  function __construct(){
-		parent::__construct();		
-		$this->load->model('Kontrol_model', 'kontrol');
+  function __construct()
+  {
+    parent::__construct();
+    $this->load->model('Kontrol_model', 'kontrol');
   }
-  
+
   public function login()
   {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -196,6 +197,37 @@ class Api extends CI_Controller
     } else {
       echo $this->email->print_debugger();
       die;
+    }
+  }
+
+  public function getAllKontrol()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      $response = array();
+
+      $allKonttol = $this->kontrol->getAllKontrol();
+
+      $response['GPS'] = (int)$allKonttol[0]['state'];
+      $response['Alarm'] = (int)$allKonttol[1]['state'];
+      $response['Listrik'] = (int)$allKonttol[2]['state'];
+      $response['Mesin'] = (int)$allKonttol[3]['state'];
+      $response['Notif'] = (int)$allKonttol[4]['state'];
+      echo json_encode($response);
+    } else {
+      $this->load->view('errors/html/error_403.php');
+    }
+  }
+
+  public function updateKontrol()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      $id = (int)$_POST['id'];
+      $state = (int)$_POST['state'];
+
+      $this->kontrol->updateOutput($id, $state);
+      $this->getAllKontrol();
+    } else {
+      $this->load->view('errors/html/error_403.php');
     }
   }
 }
