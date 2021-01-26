@@ -17,6 +17,9 @@ class Api extends CI_Controller
       $password = $_POST['password'];
 
       $user = $this->db->get_where('user', ['email' => $email])->row_array();
+      $allKonttol = $this->kontrol->getAllKontrol();
+      $accData = $this->kontrol->countAccData();
+
       $response = [
         'name' => $user['name'],
         'email' => $user['email'],
@@ -24,6 +27,12 @@ class Api extends CI_Controller
         'value' => (int)$user['role_id'],
         'password' => $user['password'],
         'date_created' => date('d F Y', $user['date_created']),
+        'GPS' => (int)$allKonttol[0]['state'],
+        'Alarm' => (int)$allKonttol[1]['state'],
+        'Listrik' => (int)$allKonttol[2]['state'],
+        'Mesin' => (int)$allKonttol[3]['state'],
+        'Notif' => (int)$allKonttol[4]['state'],
+        'MapCount' => (int)$accData[0]['COUNT(*)'],
       ];
 
       if ($user) {
@@ -206,13 +215,18 @@ class Api extends CI_Controller
       $response = array();
 
       $allKonttol = $this->kontrol->getAllKontrol();
+      $acc = $this->kontrol->getAllAcc();
+      $accData = $this->kontrol->countAccData();
 
       $response['GPS'] = (int)$allKonttol[0]['state'];
       $response['Alarm'] = (int)$allKonttol[1]['state'];
       $response['Listrik'] = (int)$allKonttol[2]['state'];
       $response['Mesin'] = (int)$allKonttol[3]['state'];
       $response['Notif'] = (int)$allKonttol[4]['state'];
+      $response['MapCount'] = (int)$accData[0]['COUNT(*)'];
+
       echo json_encode($response);
+      echo json_encode($acc);
     } else {
       $this->load->view('errors/html/error_403.php');
     }
