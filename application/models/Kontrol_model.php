@@ -11,13 +11,25 @@ class Kontrol_model extends CI_Model
 
   public function getAllAcc()
   {
-    $query = "SELECT * FROM  `acc`";
+    $query = $this->db->order_by('id', 'DESC')->get('acc', 51);
+    return $query->result_array();
+  }
+
+  public function getLastLocation()
+  {
+    $query = "SELECT * FROM `map` ORDER BY `id` DESC";
     return $this->db->query($query)->result_array();
   }
 
-  public function countAccData()
+  public function getAllLocation()
   {
-    $query = "SELECT COUNT(*) FROM  `acc` as total";
+    $query = "SELECT * FROM  `map`";
+    return $this->db->query($query)->result_array();
+  }
+
+  public function countMapData()
+  {
+    $query = "SELECT COUNT(*) FROM  `map` as total";
     return $this->db->query($query)->result_array();
   }
 
