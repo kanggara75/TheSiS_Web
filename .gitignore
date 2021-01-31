@@ -24,3 +24,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 .vscode/c_cpp_properties.json
 .vscode/settings.json
+
+#--Config and Database-----------------
+application/config/config.php
+application/config/database.php
