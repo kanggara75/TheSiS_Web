@@ -213,37 +213,44 @@ class Api extends CI_Controller
     }
   }
 
-  public function getAllKontrol()
+  public function kontrol()
   {
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-      $response = array();
+    $response = array();
 
-      $allKonttol = $this->kontrol->getAllKontrol();
-      $acc = $this->kontrol->getAllAcc();
-      $accData = $this->kontrol->countAccData();
+    $allKonttol = $this->kontrol->getAllKontrol();
 
-      $response['GPS'] = (int)$allKonttol[0]['state'];
-      $response['Alarm'] = (int)$allKonttol[1]['state'];
-      $response['Listrik'] = (int)$allKonttol[2]['state'];
-      $response['Mesin'] = (int)$allKonttol[3]['state'];
-      $response['Notif'] = (int)$allKonttol[4]['state'];
-      $response['MapCount'] = (int)$accData[0]['COUNT(*)'];
+    $mapData = $this->kontrol->countMapData();
+    $lastLocation = $this->kontrol->getLastLocation();
 
-      echo json_encode($response);
-      echo json_encode($acc);
-    } else {
-      $this->load->view('errors/html/error_403.php');
-    }
-  }
+    $response['GPS'] = (int)$allKonttol[0]['state'];
+    $response['Alarm'] = (int)$allKonttol[1]['state'];
+    $response['Listrik'] = (int)$allKonttol[2]['state'];
+    $response['Mesin'] = (int)$allKonttol[3]['state'];
+    $response['Notif'] = (int)$allKonttol[4]['state'];
+    $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
+    $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');;
+    $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
+    $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
 
-  public function updateKontrol()
-  {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $id = (int)$_POST['id'];
       $state = (int)$_POST['state'];
 
       $this->kontrol->updateOutput($id, $state);
-      $this->getAllKontrol();
+
+      echo json_encode($response);
+    } else if ($_SERVER['REQUEST_METHOD'] == "GET") {
+      echo json_encode($response);
+    } else {
+      $this->load->view('errors/html/error_403.php');
+    }
+  }
+
+  public function getAllAcc()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == "GET") {
+      $acc = $this->kontrol->getAllAcc();
+      echo json_encode($acc, JSON_NUMERIC_CHECK);
     } else {
       $this->load->view('errors/html/error_403.php');
     }
