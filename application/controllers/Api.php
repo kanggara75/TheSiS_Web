@@ -34,6 +34,9 @@ class Api extends CI_Controller
         'Mesin' => (int)$allKonttol[3]['state'],
         'Notif' => (int)$allKonttol[4]['state'],
         'MapCount' => (int)$accData[0]['COUNT(*)'],
+        'lastLon' => number_format((float)$lastLocation[0]['lon'], 6, '.', ''),
+        'lastLat' => number_format((float)$lastLocation[0]['lat'], 6, '.', ''),
+        'lastTime' => date('d F Y', $lastLocation[0]['time']),
       ];
 
       if ($user) {
