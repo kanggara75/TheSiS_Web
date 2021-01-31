@@ -18,7 +18,8 @@ class Api extends CI_Controller
 
       $user = $this->db->get_where('user', ['email' => $email])->row_array();
       $allKonttol = $this->kontrol->getAllKontrol();
-      $accData = $this->kontrol->countAccData();
+      $accData = $this->kontrol->countMapData();
+      $lastLocation = $this->kontrol->getLastLocation();
 
       $response = [
         'name' => $user['name'],
