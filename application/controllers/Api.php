@@ -228,16 +228,16 @@ class Api extends CI_Controller
     $response['Mesin'] = (int)$allKonttol[3]['state'];
     $response['Notif'] = (int)$allKonttol[4]['state'];
     $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
-    $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');;
+    $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
     $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
     $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
-
+    
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $id = (int)$_POST['id'];
       $state = (int)$_POST['state'];
-
+      
       $this->kontrol->updateOutput($id, $state);
-
+      
       echo json_encode($response);
     } else if ($_SERVER['REQUEST_METHOD'] == "GET") {
       echo json_encode($response);
@@ -245,12 +245,63 @@ class Api extends CI_Controller
       $this->load->view('errors/html/error_403.php');
     }
   }
-
-  public function getAllAcc()
+  
+  public function acc()
   {
+    $acc = $this->kontrol->getAllAcc();
     if ($_SERVER['REQUEST_METHOD'] == "GET") {
-      $acc = $this->kontrol->getAllAcc();
       echo json_encode($acc, JSON_NUMERIC_CHECK);
+    } else {
+      $this->load->view('errors/html/error_403.php');
+    }
+  }
+  
+  public function maplist()
+  {
+    $lastLocation = $this->kontrol->getLastLocation();
+    //Longitude
+    $response['0Lon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
+    $response['1Lon'] = number_format((float)$lastLocation[1]['lon'], 6, '.', '');
+    $response['2Lon'] = number_format((float)$lastLocation[2]['lon'], 6, '.', '');
+    $response['3Lon'] = number_format((float)$lastLocation[3]['lon'], 6, '.', '');
+    $response['4Lon'] = number_format((float)$lastLocation[4]['lon'], 6, '.', '');
+    $response['5Lon'] = number_format((float)$lastLocation[5]['lon'], 6, '.', '');
+    $response['6Lon'] = number_format((float)$lastLocation[6]['lon'], 6, '.', '');
+    $response['7Lon'] = number_format((float)$lastLocation[7]['lon'], 6, '.', '');
+    $response['8Lon'] = number_format((float)$lastLocation[8]['lon'], 6, '.', '');
+    $response['9Lon'] = number_format((float)$lastLocation[9]['lon'], 6, '.', '');
+    $response['10Lon'] = number_format((float)$lastLocation[10]['lon'], 6, '.', '');
+    $response['11Lon'] = number_format((float)$lastLocation[11]['lon'], 6, '.', '');
+    //Latitude
+    $response['0Lat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
+    $response['1Lat'] = number_format((float)$lastLocation[1]['lat'], 6, '.', '');
+    $response['2Lat'] = number_format((float)$lastLocation[2]['lat'], 6, '.', '');
+    $response['3Lat'] = number_format((float)$lastLocation[3]['lat'], 6, '.', '');
+    $response['4Lat'] = number_format((float)$lastLocation[4]['lat'], 6, '.', '');
+    $response['5Lat'] = number_format((float)$lastLocation[5]['lat'], 6, '.', '');
+    $response['6Lat'] = number_format((float)$lastLocation[6]['lat'], 6, '.', '');
+    $response['7Lat'] = number_format((float)$lastLocation[7]['lat'], 6, '.', '');
+    $response['8Lat'] = number_format((float)$lastLocation[8]['lat'], 6, '.', '');
+    $response['9Lat'] = number_format((float)$lastLocation[9]['lat'], 6, '.', '');
+    $response['10Lat'] = number_format((float)$lastLocation[10]['lat'], 6, '.', '');
+    $response['11Lat'] = number_format((float)$lastLocation[11]['lat'], 6, '.', '');
+
+    //Time
+    $response['0Time'] = date('h:i:s d-m-y', $lastLocation[0]['time']);
+    $response['1Time'] = date('h:i:s d-m-y', $lastLocation[1]['time']);
+    $response['2Time'] = date('h:i:s d-m-y', $lastLocation[2]['time']);
+    $response['3Time'] = date('h:i:s d-m-y', $lastLocation[3]['time']);
+    $response['4Time'] = date('h:i:s d-m-y', $lastLocation[4]['time']);
+    $response['5Time'] = date('h:i:s d-m-y', $lastLocation[5]['time']);
+    $response['6Time'] = date('h:i:s d-m-y', $lastLocation[6]['time']);
+    $response['7Time'] = date('h:i:s d-m-y', $lastLocation[7]['time']);
+    $response['8Time'] = date('h:i:s d-m-y', $lastLocation[8]['time']);
+    $response['9Time'] = date('h:i:s d-m-y', $lastLocation[9]['time']);
+    $response['10Time'] = date('h:i:s d-m-y', $lastLocation[10]['time']);
+    $response['11Time'] = date('h:i:s d-m-y', $lastLocation[11]['time']);
+    
+    if ($_SERVER['REQUEST_METHOD'] == "GET") {
+      echo json_encode($response,JSON_NUMERIC_CHECK);
     } else {
       $this->load->view('errors/html/error_403.php');
     }
