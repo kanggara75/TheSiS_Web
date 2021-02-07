@@ -92,7 +92,6 @@ class Api extends CI_Controller
         'token' => $token,
         'date' => time()
       ];
-      $cek = $this->db->get_where('user', ['email' => $email])->row_array();
       if ($uid == 'TheSiSApps') {
         if (isset($cek)) {
           $response['value'] = 0;
@@ -129,6 +128,8 @@ class Api extends CI_Controller
         $response['messege'] = "Wrong Uid";
         echo json_encode($response);
       }
+    } else {
+      $this->load->view('errors/html/error_403.php');
     }
   }
 
