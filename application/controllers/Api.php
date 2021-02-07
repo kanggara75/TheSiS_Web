@@ -232,21 +232,21 @@ class Api extends CI_Controller
     $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
     $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
     $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
-    
+
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $id = (int)$_POST['id'];
       $state = (int)$_POST['state'];
-      
+
       $this->kontrol->updateOutput($id, $state);
-      
-      echo json_encode($response);
+
+      echo json_encode($response, JSON_NUMERIC_CHECK);
     } else if ($_SERVER['REQUEST_METHOD'] == "GET") {
-      echo json_encode($response);
+      echo json_encode($response, JSON_NUMERIC_CHECK);
     } else {
       $this->load->view('errors/html/error_403.php');
     }
   }
-  
+
   public function acc()
   {
     $acc = $this->kontrol->getAllAcc();
@@ -256,7 +256,7 @@ class Api extends CI_Controller
       $this->load->view('errors/html/error_403.php');
     }
   }
-  
+
   public function maplist()
   {
     $lastLocation = $this->kontrol->getLastLocation();
@@ -300,9 +300,9 @@ class Api extends CI_Controller
     $response['9Time'] = date('h:i:s d-m-y', $lastLocation[9]['time']);
     $response['10Time'] = date('h:i:s d-m-y', $lastLocation[10]['time']);
     $response['11Time'] = date('h:i:s d-m-y', $lastLocation[11]['time']);
-    
+
     if ($_SERVER['REQUEST_METHOD'] == "GET") {
-      echo json_encode($response,JSON_NUMERIC_CHECK);
+      echo json_encode($response, JSON_NUMERIC_CHECK);
     } else {
       $this->load->view('errors/html/error_403.php');
     }
