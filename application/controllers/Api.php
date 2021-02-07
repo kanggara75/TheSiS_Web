@@ -71,11 +71,11 @@ class Api extends CI_Controller
   {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $response = array();
-      $uid = $_POST['uid'];
+      $uid = 'TheSiSApps';
       $name = $_POST['name'];
       $email = $_POST['email'];
       $password = $_POST['password'];
-      $is_active = $_POST['is_active'];
+      $cek = $this->db->get_where('user', ['email' => $email])->row_array();
 
       $data = [
         'name' => htmlspecialchars($name),
