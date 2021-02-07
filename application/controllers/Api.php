@@ -83,7 +83,7 @@ class Api extends CI_Controller
         'image' => 'default.jpg',
         'password' => password_hash($password, PASSWORD_DEFAULT),
         'role_id' => 2,
-        'is_active' => $is_active,
+        'is_active' => 0,
         'date_created' => time()
       ];
       $token = base64_encode(random_bytes(32));
