@@ -7,6 +7,7 @@ class Api extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Kontrol_model', 'kontrol');
+    $this->load->model('User_model', 'user');
   }
 
   public function login()
@@ -214,33 +215,67 @@ class Api extends CI_Controller
     }
   }
 
+  public function user()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      $uid = $_POST['uid'];
+      $name = $_POST['name'];
+      $id = (int)$_POST['id'];
+      $email = $_POST['email'];
+      $role = (int)$_POST['role'];
+      $status = (int)$_POST['status'];
+      if ($uid == 'AdminTheSiS') {
+        $this->user->updateUserRole($id, $role);
+        $this->user->updateUsername($id, $name);
+        $this->user->updateUserEmail($id, $email);
+        $this->user->updateUserStatus($id, $status);
+        $user = $this->user->getAllUser();
+        echo json_encode($user, JSON_NUMERIC_CHECK);
+      } else {
+        $this->load->view('errors/html/error_403.php');
+      }
+    } else if ($_SERVER['REQUEST_METHOD'] == "GET") {
+      $user = $this->user->getAllUser();
+      echo json_encode($user, JSON_NUMERIC_CHECK);
+    } else {
+      $this->load->view('errors/html/error_403.php');
+    }
+  }
+
   public function kontrol()
   {
-    $response = array();
-
-    $allKonttol = $this->kontrol->getAllKontrol();
-
-    $mapData = $this->kontrol->countMapData();
-    $lastLocation = $this->kontrol->getLastLocation();
-
-    $response['GPS'] = (int)$allKonttol[0]['state'];
-    $response['Alarm'] = (int)$allKonttol[1]['state'];
-    $response['Listrik'] = (int)$allKonttol[2]['state'];
-    $response['Mesin'] = (int)$allKonttol[3]['state'];
-    $response['Notif'] = (int)$allKonttol[4]['state'];
-    $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
-    $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
-    $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
-    $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
-
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $id = (int)$_POST['id'];
       $state = (int)$_POST['state'];
-
       $this->kontrol->updateOutput($id, $state);
-
+      $allKonttol = $this->kontrol->getAllKontrol();
+      $mapData = $this->kontrol->countMapData();
+      $lastLocation = $this->kontrol->getLastLocation();
+      $response['GPS'] = (int)$allKonttol[0]['state'];
+      $response['Alarm'] = (int)$allKonttol[1]['state'];
+      $response['Listrik'] = (int)$allKonttol[2]['state'];
+      $response['Mesin'] = (int)$allKonttol[3]['state'];
+      $response['Notif'] = (int)$allKonttol[4]['state'];
+      $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
+      $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
+      $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
+      $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
       echo json_encode($response, JSON_NUMERIC_CHECK);
     } else if ($_SERVER['REQUEST_METHOD'] == "GET") {
+      $allKonttol = $this->kontrol->getAllKontrol();
+
+      $mapData = $this->kontrol->countMapData();
+      $lastLocation = $this->kontrol->getLastLocation();
+
+      $response['GPS'] = (int)$allKonttol[0]['state'];
+      $response['Alarm'] = (int)$allKonttol[1]['state'];
+      $response['Listrik'] = (int)$allKonttol[2]['state'];
+      $response['Mesin'] = (int)$allKonttol[3]['state'];
+      $response['Notif'] = (int)$allKonttol[4]['state'];
+      $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
+      $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
+      $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
+      $response['lastTime'] = date('d F Y', $lastLocation[0]['time']);
       echo json_encode($response, JSON_NUMERIC_CHECK);
     } else {
       $this->load->view('errors/html/error_403.php');
