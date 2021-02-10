@@ -229,8 +229,8 @@ class Api extends CI_Controller
         $this->user->updateUsername($id, $name);
         $this->user->updateUserEmail($id, $email);
         $this->user->updateUserStatus($id, $status);
-        $user = $this->user->getAllUser();
-        echo json_encode($user, JSON_NUMERIC_CHECK);
+        $ok['msg'] = 'Update Success';
+        echo json_encode($ok, JSON_NUMERIC_CHECK);
       } else {
         $this->load->view('errors/html/error_403.php');
       }
