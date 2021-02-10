@@ -41,7 +41,7 @@ a {
 
 .top-wrapper {
 	padding: 180px 0 100px 0;
-	background-image: url(https://github.com/kanggara75/TheSiS_Web/raw/master/assets/img/bg_landing.png);
+	background-image: url(../img/bg_landing.png);
 	background-size: cover;
 	color: white;
 	text-align: center;
