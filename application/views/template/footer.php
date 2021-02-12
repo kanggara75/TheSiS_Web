@@ -81,7 +81,7 @@
 			data: {
 				labels: [
 					<?php foreach ($chart as $t) : ?>
-						<?= '"' . date('d/m', $t['time']) . '",'; ?>
+						<?= '"' . date('i:s', $t['time']) . '",'; ?>
 					<?php endforeach; ?>
 				],
 				datasets: [{
