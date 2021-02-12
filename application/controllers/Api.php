@@ -321,18 +321,18 @@ class Api extends CI_Controller
     $response['11Lat'] = number_format((float)$lastLocation[11]['lat'], 6, '.', '');
 
     //Time
-    $response['0Time'] = date('h:i:s d-m-y', $lastLocation[0]['time']);
-    $response['1Time'] = date('h:i:s d-m-y', $lastLocation[1]['time']);
-    $response['2Time'] = date('h:i:s d-m-y', $lastLocation[2]['time']);
-    $response['3Time'] = date('h:i:s d-m-y', $lastLocation[3]['time']);
-    $response['4Time'] = date('h:i:s d-m-y', $lastLocation[4]['time']);
-    $response['5Time'] = date('h:i:s d-m-y', $lastLocation[5]['time']);
-    $response['6Time'] = date('h:i:s d-m-y', $lastLocation[6]['time']);
-    $response['7Time'] = date('h:i:s d-m-y', $lastLocation[7]['time']);
-    $response['8Time'] = date('h:i:s d-m-y', $lastLocation[8]['time']);
-    $response['9Time'] = date('h:i:s d-m-y', $lastLocation[9]['time']);
-    $response['10Time'] = date('h:i:s d-m-y', $lastLocation[10]['time']);
-    $response['11Time'] = date('h:i:s d-m-y', $lastLocation[11]['time']);
+    $response['0Time'] = date('H:i:s d-m-y', $lastLocation[0]['time']);
+    $response['1Time'] = date('H:i:s d-m-y', $lastLocation[1]['time']);
+    $response['2Time'] = date('H:i:s d-m-y', $lastLocation[2]['time']);
+    $response['3Time'] = date('H:i:s d-m-y', $lastLocation[3]['time']);
+    $response['4Time'] = date('H:i:s d-m-y', $lastLocation[4]['time']);
+    $response['5Time'] = date('H:i:s d-m-y', $lastLocation[5]['time']);
+    $response['6Time'] = date('H:i:s d-m-y', $lastLocation[6]['time']);
+    $response['7Time'] = date('H:i:s d-m-y', $lastLocation[7]['time']);
+    $response['8Time'] = date('H:i:s d-m-y', $lastLocation[8]['time']);
+    $response['9Time'] = date('H:i:s d-m-y', $lastLocation[9]['time']);
+    $response['10Time'] = date('H:i:s d-m-y', $lastLocation[10]['time']);
+    $response['11Time'] = date('H:i:s d-m-y', $lastLocation[11]['time']);
 
     if ($_SERVER['REQUEST_METHOD'] == "GET") {
       echo json_encode($response, JSON_NUMERIC_CHECK);
