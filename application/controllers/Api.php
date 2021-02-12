@@ -251,11 +251,10 @@ class Api extends CI_Controller
       $allKonttol = $this->kontrol->getAllKontrol();
       $mapData = $this->kontrol->countMapData();
       $lastLocation = $this->kontrol->getLastLocation();
-      $response['GPS'] = (int)$allKonttol[0]['state'];
-      $response['Alarm'] = (int)$allKonttol[1]['state'];
-      $response['Listrik'] = (int)$allKonttol[2]['state'];
-      $response['Mesin'] = (int)$allKonttol[3]['state'];
-      $response['Notif'] = (int)$allKonttol[4]['state'];
+      $response['Alarm'] = (int)$allKonttol[0]['state'];
+      $response['Listrik'] = (int)$allKonttol[1]['state'];
+      $response['Mesin'] = (int)$allKonttol[2]['state'];
+      $response['Notif'] = (int)$allKonttol[3]['state'];
       $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
       $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
       $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
@@ -267,11 +266,10 @@ class Api extends CI_Controller
       $mapData = $this->kontrol->countMapData();
       $lastLocation = $this->kontrol->getLastLocation();
 
-      $response['GPS'] = (int)$allKonttol[0]['state'];
-      $response['Alarm'] = (int)$allKonttol[1]['state'];
-      $response['Listrik'] = (int)$allKonttol[2]['state'];
-      $response['Mesin'] = (int)$allKonttol[3]['state'];
-      $response['Notif'] = (int)$allKonttol[4]['state'];
+      $response['Alarm'] = (int)$allKonttol[0]['state'];
+      $response['Listrik'] = (int)$allKonttol[1]['state'];
+      $response['Mesin'] = (int)$allKonttol[2]['state'];
+      $response['Notif'] = (int)$allKonttol[3]['state'];
       $response['MapCount'] = (int)$mapData[0]['COUNT(*)'];
       $response['lastLon'] = number_format((float)$lastLocation[0]['lon'], 6, '.', '');
       $response['lastLat'] = number_format((float)$lastLocation[0]['lat'], 6, '.', '');
