@@ -9,10 +9,10 @@
 	<script data-ad-client="ca-pub-7125226131467905" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 	<!-- css files -->
-	<link href="<?= base_url('assets/') ?>/assets/css/403style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?= base_url('assets/'); ?>css/403style.css" rel="stylesheet" type="text/css" media="all" />
 
 	<!-- My Icon -->
-	<link rel="icon" href="<?= base_url('assets/') ?>/img/icon.png" />
+	<link rel="icon" href="<?= base_url('assets/'); ?>img/icon.png" />
 </head>
 
 <body>
@@ -39,8 +39,8 @@
 		</g>
 	</svg>
 	<h1>You are not allowed to enter here</h1>
-	<h2>Go <a href="<?= base_url('user') ?>">Home!</a></h2>
-	<script src="<?= base_url('assets/') ?>js/403script.js"></script>
+	<h2>Go <a href="<?= base_url('user'); ?>">Home!</a></h2>
+	<script src="<?= base_url('assets/'); ?>js/403script.js"></script>
 </body>
 
 </html>
