@@ -11,18 +11,17 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('email')){
+		if ($this->session->userdata('email')) {
 			redirect('user');
 		}
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
-		if($this->form_validation->run() == false){
-		$data['title']='Login';
-		$this->load->view('template/auth_header', $data);
-		$this->load->view('auth/login');
-		$this->load->view('template/auth_footer');
-		}else 
-		{
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Login';
+			$this->load->view('template/auth_header', $data);
+			$this->load->view('auth/login');
+			$this->load->view('template/auth_footer');
+		} else {
 			$this->_login();
 		}
 	}
@@ -34,8 +33,8 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
-		
-		if($user){
+
+		if ($user) {
 			if ($user['is_active'] == 1) {
 				if (password_verify($password, $user['password'])) {
 					$data = [
@@ -43,20 +42,20 @@ class Auth extends CI_Controller
 						'role_id' => $user['role_id']
 					];
 					$this->session->set_userdata($data);
-					if($user['role_id'] == 1){
+					if ($user['role_id'] == 1) {
 						redirect('admin');
-					}else{
+					} else {
 						redirect('user');
 					}
 				} else {
 					$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Wrong Password! </div>');
 					redirect('auth');
 				}
-			}else{
+			} else {
 				$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email is not Active! </div>');
-			redirect('auth');
+				redirect('auth');
 			}
-		}else{
+		} else {
 			$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email is not Registered! </div>');
 			redirect('auth');
 		}
@@ -64,26 +63,27 @@ class Auth extends CI_Controller
 
 	public function registration()
 	{
-		if($this->session->userdata('email')){
-			redirect('user');
-		}
+
 		$this->form_validation->set_rules('name', 'Name', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
 			'is_unique' => 'This Email already registered!'
 		]);
-		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', 
-		[
-			'matches' => 'Password not match',
-			'min_length' => 'Password too short'
-		]);
+		$this->form_validation->set_rules(
+			'password1',
+			'Password',
+			'required|trim|min_length[3]|matches[password2]',
+			[
+				'matches' => 'Password not match',
+				'min_length' => 'Password too short'
+			]
+		);
 		$this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-		if($this->form_validation->run() == false){
-			$data['title']='Registration';
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Registration';
 			$this->load->view('template/auth_header', $data);
 			$this->load->view('auth/registration');
 			$this->load->view('template/auth_footer');
-		}
-		else {
+		} else {
 			$email = $this->input->post('email', true);
 			$data = [
 				'name' => htmlspecialchars($this->input->post('name', true)),
@@ -102,7 +102,7 @@ class Auth extends CI_Controller
 			];
 
 			$this->db->insert('user', $data);
-			$this->db->insert('user_token', $user_token); 
+			$this->db->insert('user_token', $user_token);
 			$this->_sendEmail($token, 'verify');
 			$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Account Successfully Registered! </div>');
 			redirect('auth');
@@ -127,14 +127,14 @@ class Auth extends CI_Controller
 		$this->email->from('kanggara75@gmail.com', 'Admin TheSiS');
 		$this->email->to($this->input->post('email'));
 
-		if($type == 'verify'){
+		if ($type == 'verify') {
 			$this->email->subject('Account Activation');
 			$this->email->message('Click this link to activate your TheSiS Account: <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Here</a>');
 		} elseif ($type == 'forgot') {
 			$this->email->subject('Reset Password');
 			$this->email->message('Click this link to reset your TheSiS Account Password: <a href="' . base_url() . 'auth/reset?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Here</a>');
 		}
-		if($this->email->send()){
+		if ($this->email->send()) {
 			return true;
 		} else {
 			echo $this->email->print_debugger();
@@ -148,10 +148,10 @@ class Auth extends CI_Controller
 		$token = $this->input->get('token');
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-		if($user){
+		if ($user) {
 			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-			if($user_token){
-				if(time() - $user_token['date'] < (60*60*24)){
+			if ($user_token) {
+				if (time() - $user_token['date'] < (60 * 60 * 24)) {
 					$this->db->set('is_active', 1);
 					$this->db->where('email', $email);
 					$this->db->update('user');
@@ -190,8 +190,8 @@ class Auth extends CI_Controller
 	public function forgot()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-		if($this->form_validation->run() == false){
-			$data['title']='Forgot Password';
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Forgot Password';
 			$this->load->view('template/auth_header', $data);
 			$this->load->view('auth/forgot');
 			$this->load->view('template/auth_footer');
@@ -201,21 +201,21 @@ class Auth extends CI_Controller
 			if ($cek_user_token) {
 				$this->db->delete('user_token', ['email' => $email]);
 				$user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
-				if($user){
+				if ($user) {
 					$token = base64_encode(random_bytes(32));
 					$user_token = [
-												'email' => $email,
-												'token' => $token,
-												'date' => time()
+						'email' => $email,
+						'token' => $token,
+						'date' => time()
 					];
 
-					$this->db->insert('user_token', $user_token); 
+					$this->db->insert('user_token', $user_token);
 					$this->_sendEmail($token, 'forgot');
 					$this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Please Check Your Email to reset your password</div>');
 					redirect('auth/forgot');
-					} else {
-						$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email Not Found or Not Activated!</div>');
-						redirect('auth/forgot');
+				} else {
+					$this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Email Not Found or Not Activated!</div>');
+					redirect('auth/forgot');
 				}
 			}
 		}
@@ -226,10 +226,10 @@ class Auth extends CI_Controller
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
-		if($user){
+		if ($user) {
 			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-			if($user_token){
-				if(time() - $user_token['date'] < (60*60*24)){
+			if ($user_token) {
+				if (time() - $user_token['date'] < (60 * 60 * 24)) {
 					$this->session->set_userdata('reset_pass', $email);
 					$this->changePass();
 				} else {
@@ -250,13 +250,13 @@ class Auth extends CI_Controller
 
 	public function changePass()
 	{
-		if(!$this->session->userdata('reset_pass')){
+		if (!$this->session->userdata('reset_pass')) {
 			redirect('auth');
 		}
 		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
-    $this->form_validation->set_rules('password2', 'Confirm New Password', 'required|trim|min_length[6]|matches[password1]');
-		if($this->form_validation->run() == false){
-			$data['title']='Reset Password';
+		$this->form_validation->set_rules('password2', 'Confirm New Password', 'required|trim|min_length[6]|matches[password1]');
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Reset Password';
 			$this->load->view('template/auth_header', $data);
 			$this->load->view('auth/cp');
 			$this->load->view('template/auth_footer');
@@ -273,5 +273,4 @@ class Auth extends CI_Controller
 			redirect('auth');
 		}
 	}
-
 }
