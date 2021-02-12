@@ -9,20 +9,17 @@
 						<div class="col-lg">
 							<div class="p-5">
 								<div class="text-center">
-									<img width="80px" src="<?= base_url('assets/') ?>img/icon.png"
-										style="margin: 0 auto;vertical-align:middle;">
+									<img width="80px" src="<?= base_url('assets/') ?>img/icon.png" style="margin: 0 auto;vertical-align:middle;">
 									<h1 class="h4 text-gray-900 mb-4">TheSiS Login Page</h1>
 								</div>
-								<?= $this->session->flashdata('messege');?>
-								<form class="user" method="post" action="<?= base_url('auth')?>">
+								<?= $this->session->flashdata('messege'); ?>
+								<form class="user" method="post" action="<?= base_url('auth') ?>">
 									<div class="form-group">
-										<input type="text" class="form-control form-control-user" id="email"
-											placeholder="Enter Email Address..." name="email" value="<?= set_value('name');?>">
+										<input type="text" class="form-control form-control-user" id="email" placeholder="Enter Email Address..." name="email" value="<?= set_value('name'); ?>">
 										<?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control form-control-user" id="password" placeholder="Password"
-											name="password">
+										<input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
 										<?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
 									</div>
 									<button type="submit" class="btn btn-primary btn-user btn-block">
@@ -32,9 +29,6 @@
 								<hr>
 								<div class="text-center">
 									<a class="small" href="<?= base_url('auth\forgot') ?>">Forgot Password?</a>
-								</div>
-								<div class="text-center">
-									<a class="small" href="<?= base_url('auth\registration') ?>">Create an Account!</a>
 								</div>
 							</div>
 						</div>
