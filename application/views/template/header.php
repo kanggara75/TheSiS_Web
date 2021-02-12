@@ -17,7 +17,7 @@
 
 	<!-- My Icon -->
 	<link rel="icon" href="<?= base_url('assets/') ?>img/icon.png" />
-	<?php if ($title == "Admin Page") : ?>
+	<?php if ($title == "Dashboard") : ?>
 		<meta http-equiv="refresh" content="30" />
 		<!-- My Css For Switch-->
 		<link href="<?= base_url('assets/') ?>css/switch.css" rel="stylesheet">

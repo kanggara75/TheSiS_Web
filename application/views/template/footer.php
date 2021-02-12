@@ -45,7 +45,7 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
-<?php if ($title == "Admin Page") : ?>
+<?php if ($title == "Dashboard") : ?>
 	<!-- Memanggil Script hanya pada Admin Page dan User Page -->
 	<script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
 	<!-- My Css For Map Table-->
@@ -227,7 +227,7 @@
 					state: state
 				},
 				success: function() {
-					document.location.href = "<?= base_url('admin'); ?>";
+					document.location.href = "<?= base_url('user'); ?>";
 				}
 			})
 		});
