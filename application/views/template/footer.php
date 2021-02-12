@@ -219,7 +219,7 @@
 			const state = $(this).data('state');
 			const nama = $(this).data('nama');
 			$.ajax({
-				url: "<?= base_url('admin/updateKontrol'); ?>",
+				url: "<?= base_url('user/updateKontrol'); ?>",
 				type: 'post',
 				data: {
 					id: id,

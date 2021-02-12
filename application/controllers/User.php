@@ -117,4 +117,17 @@ class User extends CI_Controller
       }
     }
   }
+
+  public function updateKontrol()
+  {
+    $state = $this->input->post('state');
+    $id = $this->input->post('id');
+    $nama = $this->input->post('nama');
+    $this->kontrol->updateOutput($id, $state);
+    if ($state == 1) {
+      $this->session->set_flashdata('messege1', '<div class="alert alert-danger" role="alert">' . $nama . ' Changed to <strong>Off!</strong></div>');
+    } else {
+      $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">' . $nama . ' Changed to <strong>On!</strong></div>');
+    }
+  }
 }

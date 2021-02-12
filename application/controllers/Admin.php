@@ -70,24 +70,6 @@ class Admin extends CI_Controller
     $this->session->set_flashdata('messege', '<div class="alert alert-success" role="alert">Access Changed! </div>');
   }
 
-  public function updateKontrol()
-  {
-    $state = $this->input->post('state');
-    $id = $this->input->post('id');
-    $nama = $this->input->post('nama');
-    if ($state == 1) {
-      $this->db->set('state', 0);
-      $this->db->where('id', $id);
-      $this->db->update('kontrol');
-      $this->session->set_flashdata('messege1', '<div class="alert alert-danger" role="alert">' . $nama . ' Changed to <strong>Off!</strong></div>');
-    } else {
-      $this->db->set('state', 1);
-      $this->db->where('id', $id);
-      $this->db->update('kontrol');
-      $this->session->set_flashdata('messege1', '<div class="alert alert-success" role="alert">' . $nama . ' Changed to <strong>On!</strong></div>');
-    }
-  }
-
   // public function getAllKontrol()
   // {
   //   $data['title'] = 'Admin Page';
