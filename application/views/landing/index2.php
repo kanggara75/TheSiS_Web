@@ -52,28 +52,28 @@
       <div class="lessons">
         <div class="lesson">
           <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/html.png">
+            <img src="<?= base_url('assets/') ?>img/html.png">
             <p>Tracking</p>
           </div>
           <p class="txt-contents">Lacak keberadaan kendaraan anda melalui koordinat yang akan diarahkan dengan Google Map.</p>
         </div>
         <div class="lesson">
           <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/jQuery.png">
+            <img src="<?= base_url('assets/') ?>img/jQuery.png">
             <p>Monitoring</p>
           </div>
           <p class="txt-contents">Pantau kondisi dan keadaan kendaraan anda hanya dengan internet.</p>
         </div>
         <div class="lesson">
           <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/ruby.png">
+            <img src="<?= base_url('assets/') ?>img/ruby.png">
             <p>Control</p>
           </div>
           <p class="txt-contents">Menonaktifkan kendaraan secara langsung dari jarak jauh hanya dengan koneksi internet.</p>
         </div>
         <div class="lesson">
           <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/php.png">
+            <img src="<?= base_url('assets/') ?>img/php.png">
             <p>Live Report</p>
           </div>
           <p class="txt-contents">Dapatkan Notifikasi secara langsung jika terdapat perubahan/pergerakan dari kendaraan anda secara langsung.</p>
