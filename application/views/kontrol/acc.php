@@ -1,25 +1,24 @@
 <?php
 $api_key_value = "tPmAT5Ab3j7F9";
-$acx = $acy = $acz = $grx = $gry = $grz = $temp = $api_key = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $api_key = test_input($_POST["api_key"]);
   if ($api_key == $api_key_value) {
-    $temp = test_input($_POST["temp"]);
     $acx = test_input($_POST["acx"]);
     $acy = test_input($_POST["acy"]);
     $acz = test_input($_POST["acz"]);
     $grx = test_input($_POST["grx"]);
     $gry = test_input($_POST["gry"]);
     $grz = test_input($_POST["grz"]);
+    $temp = test_input($_POST["temp"]);
 
     $accin = [
-      'Ax' => $acx,
-      'Ay' => $acy,
-      'Az' => $acz,
-      'Gx' => $grx,
-      'Gy' => $gry,
-      'Gz' => $grz,
-      'Tmp' => $temp,
+      'x' => $acx,
+      'y' => $acy,
+      'z' => $acz,
+      'gx' => $grx,
+      'gy' => $gry,
+      'gz' => $grz,
+      'temp' => $temp,
       'time' => time()
     ];
     $this->db->insert('acc', $accin);
