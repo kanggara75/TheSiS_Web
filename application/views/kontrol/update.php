@@ -10,6 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gry = test_input($_POST["gry"]);
     $grz = test_input($_POST["grz"]);
     $temp = test_input($_POST["temp"]);
+    // GPS Section
+    $lat = test_input($_POST["lat"]);
+    $lon = test_input($_POST["lon"]);
 
     $accin = [
       'x' => $acx,
@@ -21,7 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       'temp' => $temp,
       'time' => time()
     ];
+    $gpsin = [
+      'lat' => $lat,
+      'lon' => $lon,
+      'time' => time()
+    ];
     $this->db->insert('acc', $accin);
+    $this->db->insert('map', $gpsin);
     header("HTTP/1.1 202 Accepted");
   } else {
     header("HTTP/1.1 406 Not Acceptable");
