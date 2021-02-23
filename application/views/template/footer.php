@@ -259,6 +259,9 @@
 			})
 		});
 	</script>
+
+<?php elseif ($title == "3d View") : ?>
+	<script src="<?= base_url('assets/') ?>js/3dmodel.js"></script>
 <?php endif; ?>
 </body>
 

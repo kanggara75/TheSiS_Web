@@ -21,6 +21,11 @@
 		<meta http-equiv="refresh" content="30" />
 		<!-- My Css For Switch-->
 		<link href="<?= base_url('assets/') ?>css/switch.css" rel="stylesheet">
+	<?php elseif ($title == "3d View") : ?>
+		<meta http-equiv="refresh" content="10" />
+		<!-- My Css For Switch-->
+		<link href="<?= base_url('assets/') ?>css/3dmodel.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/107/three.min.js"></script>
 	<?php endif; ?>
 </head>
 
