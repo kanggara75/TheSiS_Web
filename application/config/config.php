@@ -23,9 +23,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://thesis.kanggara.net/';
-// $config['base_url'] = 'https://localhost/TheSiS_Web/';
-// $config['base_url'] = 'https://192.168.43.50/TheSiS_Web/';
+ $config['base_url'] = 'http://47.254.213.228/apps/';
+//$config['base_url'] = 'http://localhost/thesis/';
+// $config['base_url'] = 'http://192.168.43.50/TheSiS_Web/';
 
 /*
 |--------------------------------------------------------------------------
