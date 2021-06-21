@@ -24,10 +24,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script data-ad-client="ca-pub-7125226131467905" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 	<!-- css files -->
-	<link href="https://thesis.kanggara.net/assets/css/404style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="http://47.254.213.228/assets/css/404style.css" rel="stylesheet" type="text/css" media="all" />
 
 	<!-- My Icon -->
-	<link rel="icon" href="https://thesis.kanggara.net/assets/img/icon.png" />
+	<link rel="icon" href="http://47.254.213.228/assets/img/icon.png" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div id="large-header" class="large-header">
 				<p class="w3-agileits1">Oops!</p>
 				<canvas id="demo-canvas"></canvas>
-				<img src="https://thesis.kanggara.net/assets/img/owl.gif" alt="flashy" class="w3l" />
+				<img src="http://47.254.213.228/assets/img/owl.gif" alt="flashy" class="w3l" />
 				<h2 class="main-title">404</h2>
 				<p class="w3-agileits2">We can't seem to find the page you're looking for.</p>
 				<p class="copyright">&copy; <script type="text/javascript">
@@ -46,8 +46,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</div>
 	<!-- js files -->
-	<script src="https://thesis.kanggara.net/assets/js/rAF.js"></script>
-	<script src="https://thesis.kanggara.net/assets/js/demo-2.js"></script>
+	<script src="http://47.254.213.228/assets/js/rAF.js"></script>
+	<script src="http://47.254.213.228/assets/js/demo-2.js"></script>
 	<!-- /js files -->
 </body>
 
